@@ -10,7 +10,7 @@ export function handleAddVault(event: AddVault): void {
   let vault = new Vault(event.params.vault.toHexString()) as Vault
   vault.borrowed = BigDecimal.fromString('0')
   vault.supply = BigDecimal.fromString('0')
-  vault.totalPosition = BigInt.fromString('0')
+  vault.totalPosition = BigInt.fromI32(0)
   vault.History = []
 
   let token = new Token(event.params.vault.toHexString())
@@ -34,7 +34,7 @@ export function handleAddVault(event: AddVault): void {
   if (decimals.reverted) {
     token.decimals = BigInt.fromI32(0)
   }else{
-    token.decimals = BigInt.fromI64(decimals.value)
+    token.decimals = BigInt.fromI32(decimals.value)
   }
   token.save()
 

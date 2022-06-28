@@ -6,6 +6,7 @@ import {
   Value,
   ValueKind,
   store,
+  Address,
   Bytes,
   BigInt,
   BigDecimal
@@ -19,23 +20,22 @@ export class Vault extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Vault entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type Vault must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("Vault", id.toString(), this);
-    }
+    assert(id !== null, "Cannot save Vault entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Vault entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Vault", id.toString(), this);
   }
 
   static load(id: string): Vault | null {
-    return changetype<Vault | null>(store.get("Vault", id));
+    return store.get("Vault", id) as Vault | null;
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    return value.toString();
   }
 
   set id(value: string) {
@@ -44,7 +44,7 @@ export class Vault extends Entity {
 
   get token(): string {
     let value = this.get("token");
-    return value!.toString();
+    return value.toString();
   }
 
   set token(value: string) {
@@ -53,7 +53,7 @@ export class Vault extends Entity {
 
   get supply(): BigDecimal {
     let value = this.get("supply");
-    return value!.toBigDecimal();
+    return value.toBigDecimal();
   }
 
   set supply(value: BigDecimal) {
@@ -62,7 +62,7 @@ export class Vault extends Entity {
 
   get borrowed(): BigDecimal {
     let value = this.get("borrowed");
-    return value!.toBigDecimal();
+    return value.toBigDecimal();
   }
 
   set borrowed(value: BigDecimal) {
@@ -71,7 +71,7 @@ export class Vault extends Entity {
 
   get totalPosition(): BigInt {
     let value = this.get("totalPosition");
-    return value!.toBigInt();
+    return value.toBigInt();
   }
 
   set totalPosition(value: BigInt) {
@@ -80,7 +80,7 @@ export class Vault extends Entity {
 
   get History(): Array<string> {
     let value = this.get("History");
-    return value!.toStringArray();
+    return value.toStringArray();
   }
 
   set History(value: Array<string>) {
@@ -96,23 +96,22 @@ export class Token extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Token entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type Token must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("Token", id.toString(), this);
-    }
+    assert(id !== null, "Cannot save Token entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Token entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Token", id.toString(), this);
   }
 
   static load(id: string): Token | null {
-    return changetype<Token | null>(store.get("Token", id));
+    return store.get("Token", id) as Token | null;
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    return value.toString();
   }
 
   set id(value: string) {
@@ -121,7 +120,7 @@ export class Token extends Entity {
 
   get name(): string {
     let value = this.get("name");
-    return value!.toString();
+    return value.toString();
   }
 
   set name(value: string) {
@@ -130,7 +129,7 @@ export class Token extends Entity {
 
   get symbol(): string {
     let value = this.get("symbol");
-    return value!.toString();
+    return value.toString();
   }
 
   set symbol(value: string) {
@@ -139,7 +138,7 @@ export class Token extends Entity {
 
   get decimals(): BigInt {
     let value = this.get("decimals");
-    return value!.toBigInt();
+    return value.toBigInt();
   }
 
   set decimals(value: BigInt) {
@@ -155,23 +154,22 @@ export class Record extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Record entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type Record must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("Record", id.toString(), this);
-    }
+    assert(id !== null, "Cannot save Record entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Record entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Record", id.toString(), this);
   }
 
   static load(id: string): Record | null {
-    return changetype<Record | null>(store.get("Record", id));
+    return store.get("Record", id) as Record | null;
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    return value.toString();
   }
 
   set id(value: string) {
@@ -180,7 +178,7 @@ export class Record extends Entity {
 
   get hash(): string {
     let value = this.get("hash");
-    return value!.toString();
+    return value.toString();
   }
 
   set hash(value: string) {
@@ -189,7 +187,7 @@ export class Record extends Entity {
 
   get user(): string {
     let value = this.get("user");
-    return value!.toString();
+    return value.toString();
   }
 
   set user(value: string) {
@@ -198,7 +196,7 @@ export class Record extends Entity {
 
   get type(): string {
     let value = this.get("type");
-    return value!.toString();
+    return value.toString();
   }
 
   set type(value: string) {
@@ -207,7 +205,7 @@ export class Record extends Entity {
 
   get amount(): BigDecimal {
     let value = this.get("amount");
-    return value!.toBigDecimal();
+    return value.toBigDecimal();
   }
 
   set amount(value: BigDecimal) {
@@ -223,23 +221,22 @@ export class User extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save User entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type User must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("User", id.toString(), this);
-    }
+    assert(id !== null, "Cannot save User entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save User entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("User", id.toString(), this);
   }
 
   static load(id: string): User | null {
-    return changetype<User | null>(store.get("User", id));
+    return store.get("User", id) as User | null;
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    return value.toString();
   }
 
   set id(value: string) {
@@ -255,23 +252,22 @@ export class Share extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Share entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type Share must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("Share", id.toString(), this);
-    }
+    assert(id !== null, "Cannot save Share entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Share entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Share", id.toString(), this);
   }
 
   static load(id: string): Share | null {
-    return changetype<Share | null>(store.get("Share", id));
+    return store.get("Share", id) as Share | null;
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    return value.toString();
   }
 
   set id(value: string) {
@@ -280,7 +276,7 @@ export class Share extends Entity {
 
   get vault(): string {
     let value = this.get("vault");
-    return value!.toString();
+    return value.toString();
   }
 
   set vault(value: string) {
@@ -289,7 +285,7 @@ export class Share extends Entity {
 
   get user(): string {
     let value = this.get("user");
-    return value!.toString();
+    return value.toString();
   }
 
   set user(value: string) {
@@ -298,7 +294,7 @@ export class Share extends Entity {
 
   get share(): BigDecimal {
     let value = this.get("share");
-    return value!.toBigDecimal();
+    return value.toBigDecimal();
   }
 
   set share(value: BigDecimal) {
@@ -314,23 +310,22 @@ export class Position extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Position entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type Position must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("Position", id.toString(), this);
-    }
+    assert(id !== null, "Cannot save Position entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Position entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Position", id.toString(), this);
   }
 
   static load(id: string): Position | null {
-    return changetype<Position | null>(store.get("Position", id));
+    return store.get("Position", id) as Position | null;
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    return value.toString();
   }
 
   set id(value: string) {
@@ -339,7 +334,7 @@ export class Position extends Entity {
 
   get vault(): string {
     let value = this.get("vault");
-    return value!.toString();
+    return value.toString();
   }
 
   set vault(value: string) {
@@ -348,7 +343,7 @@ export class Position extends Entity {
 
   get worker(): Bytes {
     let value = this.get("worker");
-    return value!.toBytes();
+    return value.toBytes();
   }
 
   set worker(value: Bytes) {
@@ -357,7 +352,7 @@ export class Position extends Entity {
 
   get owner(): Bytes {
     let value = this.get("owner");
-    return value!.toBytes();
+    return value.toBytes();
   }
 
   set owner(value: Bytes) {
@@ -366,7 +361,7 @@ export class Position extends Entity {
 
   get positionId(): BigInt {
     let value = this.get("positionId");
-    return value!.toBigInt();
+    return value.toBigInt();
   }
 
   set positionId(value: BigInt) {
@@ -375,7 +370,7 @@ export class Position extends Entity {
 
   get debtShare(): BigDecimal {
     let value = this.get("debtShare");
-    return value!.toBigDecimal();
+    return value.toBigDecimal();
   }
 
   set debtShare(value: BigDecimal) {
@@ -384,7 +379,7 @@ export class Position extends Entity {
 
   get History(): Array<string> {
     let value = this.get("History");
-    return value!.toStringArray();
+    return value.toStringArray();
   }
 
   set History(value: Array<string>) {
@@ -400,23 +395,22 @@ export class Tx extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Tx entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type Tx must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("Tx", id.toString(), this);
-    }
+    assert(id !== null, "Cannot save Tx entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Tx entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Tx", id.toString(), this);
   }
 
   static load(id: string): Tx | null {
-    return changetype<Tx | null>(store.get("Tx", id));
+    return store.get("Tx", id) as Tx | null;
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    return value.toString();
   }
 
   set id(value: string) {
@@ -425,7 +419,7 @@ export class Tx extends Entity {
 
   get hash(): string {
     let value = this.get("hash");
-    return value!.toString();
+    return value.toString();
   }
 
   set hash(value: string) {
@@ -434,7 +428,7 @@ export class Tx extends Entity {
 
   get positionId(): BigInt {
     let value = this.get("positionId");
-    return value!.toBigInt();
+    return value.toBigInt();
   }
 
   set positionId(value: BigInt) {
@@ -443,7 +437,7 @@ export class Tx extends Entity {
 
   get type(): string {
     let value = this.get("type");
-    return value!.toString();
+    return value.toString();
   }
 
   set type(value: string) {
@@ -452,7 +446,7 @@ export class Tx extends Entity {
 
   get amount(): BigDecimal {
     let value = this.get("amount");
-    return value!.toBigDecimal();
+    return value.toBigDecimal();
   }
 
   set amount(value: BigDecimal) {

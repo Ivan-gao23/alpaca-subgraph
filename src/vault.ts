@@ -1,4 +1,4 @@
-import { BigInt,BigDecimal, Address, typeConversion } from "@graphprotocol/graph-ts"
+import { BigInt,BigDecimal, Address} from "@graphprotocol/graph-ts"
 import {
   Transfer,
   Work,
@@ -119,8 +119,8 @@ export function handleWork(event: Work): void {
 		pos.owner = Address.fromString('0x0000000000000000000000000000000000000000')
 	}
 	else{
-		pos.worker = vaultTemplate.try_positions(event.params.id).value.getWorker()
-		pos.owner = vaultTemplate.try_positions(event.params.id).value.getOwner()
+		pos.worker = vaultTemplate.try_positions(event.params.id).value.value0
+		pos.owner = vaultTemplate.try_positions(event.params.id).value.value1
 	}
 	pos.History = []
 	pos.History = pos.History.concat([event.transaction.hash.toHexString()+"work"])

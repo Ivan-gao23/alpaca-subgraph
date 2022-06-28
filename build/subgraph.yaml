@@ -1,4 +1,4 @@
-specVersion: 0.0.5
+specVersion: 0.0.2
 schema:
   file: schema.graphql
 dataSources:
@@ -11,7 +11,7 @@ dataSources:
       startBlock: 20383495
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
         - Vault
@@ -40,7 +40,7 @@ templates:
       abi: Vault
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       file: templates/Vault/Vault.wasm
       entities:
