@@ -1,0 +1,68 @@
+{
+  vaults {
+    id
+    token {
+      id
+    }
+    supply
+    borrowed
+    History(where:{type : "Deposit"}){
+      id
+      user{
+        id
+      }
+      type
+      amount
+    }
+  }
+}
+
+{
+  positions {
+    id
+    vault{
+      id
+    }
+    worker
+    owner
+    positionId
+    debtShare
+    History{
+      id
+      positionId
+      type
+      amount
+    }
+  }
+}
+
+{
+  tokens {
+    id
+    name
+    symbol
+    decimal
+  }
+}
+
+{
+  shares{
+    id
+    vault{
+      id
+    }
+    user{
+      id
+    }
+    share
+  }
+}
+
+{
+  txes {
+    id
+    positionId
+    type
+    amount
+  }
+}

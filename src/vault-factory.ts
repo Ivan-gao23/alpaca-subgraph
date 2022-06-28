@@ -1,51 +1,44 @@
-import { BigInt } from "@graphprotocol/graph-ts"
+import { BigDecimal, BigInt, Value ,log } from "@graphprotocol/graph-ts"
 import {
-  VaultFactory,
   AddVault,
-  OwnershipTransferred
 } from "../generated/VaultFactory/VaultFactory"
-import { ExampleEntity } from "../generated/schema"
-
+import {Token, Vault} from "../generated/schema"
+import {Vault as VaultTemplate} from "../generated/templates"
+import {Vault as VaultBind} from "../generated/templates/Vault/Vault"
 export function handleAddVault(event: AddVault): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let entity = ExampleEntity.load(event.transaction.from.toHex())
 
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (!entity) {
-    entity = new ExampleEntity(event.transaction.from.toHex())
+  let vault = new Vault(event.params.vault.toHexString()) as Vault
+  vault.borrowed = BigDecimal.fromString('0')
+  vault.supply = BigDecimal.fromString('0')
+  vault.totalPosition = BigInt.fromString('0')
+  vault.History = []
 
-    // Entity fields can be set using simple assignments
-    entity.count = BigInt.fromI32(0)
+  let token = new Token(event.params.vault.toHexString())
+  let vaultBind = VaultBind.bind(event.params.vault)
+
+  let name = vaultBind.try_name()
+  if (name.reverted) {
+    token.name = "cannot get name from chain"
+  }else{
+    token.name = name.value
   }
 
-  // BigInt and BigDecimal math are supported
-  entity.count = entity.count + BigInt.fromI32(1)
+  let symbol = vaultBind.try_symbol()
+  if (symbol.reverted) {
+    token.symbol = "cannot get symbol from chain"
+  }else{
+    token.symbol = symbol.value
+  }
 
-  // Entity fields can be set based on event parameters
-  entity.vault = event.params.vault
+  let decimals = vaultBind.try_decimals()
+  if (decimals.reverted) {
+    token.decimals = BigInt.fromI32(0)
+  }else{
+    token.decimals = BigInt.fromI64(decimals.value)
+  }
+  token.save()
 
-  // Entities can be written to the store with `.save()`
-  entity.save()
-
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract.owner(...)
-  // - contract.vaults(...)
+  VaultTemplate.create(event.params.vault)
+  vault.token = event.params.vault.toHexString()
+  vault.save()
 }
-
-export function handleOwnershipTransferred(event: OwnershipTransferred): void {}

@@ -1,0 +1,44 @@
+Arguments: 
+  /usr/local/bin/node /Users/gaoyifan/.yarn/bin/yarn.js
+
+PATH: 
+  /usr/local/mysql-8.0.23-macos10.15-x86_64/bin:/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin:/Users/gaoyifan/.yarn/bin:/Users/gaoyifan/.config/yarn/global/node_modules/.bin:/Users/gaoyifan/go/bin:/Users/gaoyifan/.cargo/bin:/usr/local/mysql-8.0.23-macos10.15-x86_64/bin:/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin:/Users/gaoyifan/.yarn/bin:/Users/gaoyifan/.config/yarn/global/node_modules/.bin:/Users/gaoyifan/go/bin:/Users/gaoyifan/.cargo/bin:/usr/local/mysql-8.0.23-macos10.15-x86_64/bin:/Library/Java/JavaVirtualMachines/jdk-11.0.8.jdk/Contents/Home/bin:/Users/gaoyifan/.yarn/bin:/Users/gaoyifan/.config/yarn/global/node_modules/.bin:/Users/gaoyifan/anaconda3/bin:/Users/gaoyifan/anaconda3/condabin:/Users/gaoyifan/go/bin:/Users/gaoyifan/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Applications/Wireshark.app/Contents/MacOS:/Users/gaoyifan/dev-env/javacc-6.0/bin:/Users/gaoyifan/dev-env/flutter/bin:/Users/gaoyifan/dev-env/tools/bin:/Users/gaoyifan/.local/bin:/Users/gaoyifan/dev-env/tools/bin:/Users/gaoyifan/dev-env/apache-maven-3.6.2/bin:/Users/gaoyifan/dev-env/javacc-6.0/bin:/Users/gaoyifan/dev-env/flutter/bin:/Users/gaoyifan/dev-env/tools/bin:/Users/gaoyifan/.local/bin:/Users/gaoyifan/dev-env/tools/bin:/Users/gaoyifan/dev-env/apache-maven-3.6.2/bin:/Users/gaoyifan/dev-env/javacc-6.0/bin/:/Users/gaoyifan/dev-env/flutter/bin:/Users/gaoyifan/dev-env/tools/bin:/Users/gaoyifan/.local/bin:/Users/gaoyifan/dev-env/tools/bin:/Users/gaoyifan/dev-env/apache-maven-3.6.2/bin
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  16.15.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://github.com/hugomrdias/concat-stream.git/info/refs?service=git-upload-pack: ETIMEDOUT
+      at Timeout._onTimeout (/Users/gaoyifan/.yarn/lib/cli.js:130201:19)
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+npm manifest: 
+  {
+    "name": "Alpaca",
+    "license": "UNLICENSED",
+    "scripts": {
+      "codegen": "graph codegen",
+      "build": "graph build",
+      "deploy": "graph deploy --node https://api.thegraph.com/deploy/ ivan-gao23/Alpaca",
+      "create-local": "graph create --node http://localhost:8020/ ivan-gao23/Alpaca",
+      "remove-local": "graph remove --node http://localhost:8020/ ivan-gao23/Alpaca",
+      "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ivan-gao23/Alpaca"
+    },
+    "dependencies": {
+      "@graphprotocol/graph-cli": "0.30.0",
+      "@graphprotocol/graph-ts": "0.27.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
