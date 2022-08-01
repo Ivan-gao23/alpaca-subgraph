@@ -4,13 +4,22 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ ivan-gao23/vault11",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ ivan-gao23/vault22",
     "create-local": "graph create --node http://localhost:8020/ ivan-gao23/Alpaca",
     "remove-local": "graph remove --node http://localhost:8020/ ivan-gao23/Alpaca",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ivan-gao23/Alpaca"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.16.0",
-    "@graphprotocol/graph-ts": "0.16.0"
+    "@graphprotocol/graph-cli": "0.31.0",
+    "@graphprotocol/graph-ts": "0.27.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.18.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.3",
+    "eslint-plugin-promise": "^6.0.0"
   }
 }

@@ -66,3 +66,26 @@
     amount
   }
 }
+
+{
+  healths{
+    id
+    worker{
+      id
+      lpToken{
+        id
+        name
+      }
+      baseToken{
+        id
+        name
+      }
+      farmingToken{
+        id 
+        name
+      }
+    }
+    positionId
+    health
+  }
+}

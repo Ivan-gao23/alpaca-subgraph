@@ -35,9 +35,10 @@ type Share @entity {
 
 type Position @entity {
   id: ID!
+  pair: String!
   vault: Vault!
-  worker: Bytes!
-  owner: Bytes!
+  worker: Worker!
+  owner: String!
   positionId: BigInt!
   debtShare: BigDecimal!
   History:[Tx!]!
@@ -49,4 +50,11 @@ type Tx @entity {
   positionId: BigInt!
   type: String!
   amount: BigDecimal!
+}
+
+type Worker @entity {
+  id: ID!
+  lpToken: Token!
+  baseToken: Token!
+  farmingToken: Token!
 }

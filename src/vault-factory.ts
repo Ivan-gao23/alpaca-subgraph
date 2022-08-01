@@ -33,7 +33,7 @@ export function handleAddVault(event: AddVault): void {
   let decimals = vaultBind.try_decimals()
   if (decimals.reverted) {
     token.decimals = BigInt.fromI32(0)
-  }else{
+  } else {
     token.decimals = BigInt.fromI32(decimals.value)
   }
   token.save()
