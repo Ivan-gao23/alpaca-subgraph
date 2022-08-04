@@ -147,7 +147,6 @@ export function handleWork(event: Work): void {
     pos.save()
 	
 	let worker = Worker.load(pos.worker)
-    log.error(pos.worker,[])
 	let iworker = IWorker.bind(Address.fromString(pos.worker))
 	if (worker == null){
 	worker = new Worker(pos.worker)
@@ -159,7 +158,6 @@ export function handleWork(event: Work): void {
 
 	}
 	let baseToken = Token.load(worker.baseToken)
-    log.error(worker.baseToken,[])
     if (baseToken == null) {
     baseToken = new Token(worker.baseToken)
    
@@ -173,7 +171,6 @@ export function handleWork(event: Work): void {
 	baseToken.save()
 
 	let farmingToken = Token.load(worker.farmingToken)
-    log.error(worker.farmingToken,[])
     if (farmingToken == null) {
     farmingToken = new Token(worker.farmingToken)
 	let ft = ERC20.bind(Address.fromString(worker.farmingToken))
@@ -187,7 +184,6 @@ export function handleWork(event: Work): void {
 	farmingToken.save()
 
 	let lpToken = Token.load(worker.lpToken)
-    log.error(worker.lpToken,[])
     if (lpToken == null){
         lpToken = new Token(worker.lpToken)
         let lp = ERC20.bind(Address.fromString(worker.lpToken))

@@ -4,10 +4,10 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ ivan-gao23/vault22",
-    "create-local": "graph create --node http://localhost:8020/ ivan-gao23/Alpaca",
-    "remove-local": "graph remove --node http://localhost:8020/ ivan-gao23/Alpaca",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ivan-gao23/Alpaca"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ ivan-gao23/vault23",
+    "create-local": "graph create --node http://16.162.161.200:8020 ivan-gao23/Alpaca",
+    "remove-local": "graph remove --node http://16.162.161.200:8020/ ivan-gao23/Alpaca",
+    "deploy-local": "graph deploy --node http://16.162.161.200:8020 ivan-gao23/Alpaca"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.31.0",
