@@ -1,10 +1,10 @@
-specVersion: 0.0.5
+specVersion: 0.0.4
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
     name: VaultFactory
-    network: chapel
+    network: bsc
     source:
       address: "0x9b77061393d8eeC317CA95C20e3387B3e37Bdf7F"
       abi: VaultFactory
@@ -37,7 +37,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Vault
-    network: chapel
+    network: bsc
     source:
       abi: Vault
     mapping:
@@ -73,7 +73,7 @@ templates:
           handler: handleAddCollateral
   - kind: ethereum/contract
     name: VaultConfig
-    network: chapel
+    network: bsc
     source:
       abi: ConfigurableInterestVaultConfig
     mapping:

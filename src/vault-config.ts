@@ -9,9 +9,9 @@ import { IWorker } from "../generated/templates/Vault/IWorker"
 import { ERC20 } from "../generated/templates/Vault/ERC20"
 export function handleSetWorkers(event: SetWorkers): void {
 	let iworker = IWorker.bind(event.params.worker)
-	let worker = Worker.load(event.params.worker.toString())
+	let worker = Worker.load(event.params.worker.toHexString())
 	if (worker == null){
-	worker = new Worker(event.params.worker.toString())
+	worker = new Worker(event.params.worker.toHexString())
 	worker.baseToken = iworker.try_baseToken().reverted ? '0x0000000000000000000000000000000000000003' : iworker.try_baseToken().value.toHexString()
 
 	worker.farmingToken = iworker.try_farmingToken().reverted ? '0x0000000000000000000000000000000000000004': iworker.try_farmingToken().value.toHexString()
@@ -19,4 +19,5 @@ export function handleSetWorkers(event: SetWorkers): void {
 	worker.lpToken = iworker.try_lpToken().reverted ? '0x0000000000000000000000000000000000000005' : iworker.try_lpToken().value.toHexString()
 
 	}
+	worker.save()
 } 
